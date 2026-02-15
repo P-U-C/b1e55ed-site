@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>b1e55ed</title>
+    <meta name="description" content="Sovereign AI trading intelligence with compound learning.">
+    <meta property="og:title" content="b1e55ed">
+    <meta property="og:description" content="Sovereign AI trading intelligence. Compound learning. Open source.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▣</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --bg-raised: #111111;
+            --border: rgba(255,255,255,0.06);
+            --border-active: rgba(255,255,255,0.12);
+            --text: #b0aca4;
+            --text-bright: #d4d0c8;
+            --text-dim: #5a5650;
+            --text-faint: #2e2b28;
+            --green: #22C55E;
+            --green-dim: rgba(34,197,94,0.12);
+            --amber: #F59E0B;
+            --amber-dim: rgba(245,158,11,0.12);
+            --red: #DC2626;
+            --mono: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 15px; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--mono);
+            font-weight: 400;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        ::selection {
+            background: var(--green-dim);
+            color: var(--green);
+        }
+
+        .grain {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        .page {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 80px 32px 60px;
+        }
+
+        /* ═══ HEADER ═══ */
+        .header {
+            margin-bottom: 60px;
+        }
+
+        .name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-bright);
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+
+        .name .hex {
+            color: var(--green);
+            font-weight: 400;
+        }
+
+        .tagline {
+            font-size: 0.7rem;
+            font-weight: 300;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* ═══ STATUS BLOCK ═══ */
+        .status-block {
+            background: var(--bg-raised);
+            border: 1px solid var(--border);
+            padding: 24px;
+            margin-bottom: 40px;
+        }
+
+        .status-header {
+            font-size: 0.6rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .status-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+        }
+
+        .status-label {
+            font-size: 0.75rem;
+            font-weight: 300;
+            color: var(--text-dim);
+        }
+
+        .status-value {
+            font-size: 0.75rem;
+            font-weight: 400;
+        }
+
+        .status-value.green { color: var(--green); }
+        .status-value.amber { color: var(--amber); }
+        .status-value.dim { color: var(--text-dim); }
+
+        .dot {
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+
+        .dot.green { background: var(--green); }
+        .dot.amber { background: var(--amber); }
+
+        .dot.pulse {
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* ═══ DESCRIPTION ═══ */
+        .description {
+            margin-bottom: 48px;
+        }
+
+        .description p {
+            font-size: 0.8rem;
+            font-weight: 300;
+            line-height: 1.75;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .description p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight {
+            color: var(--text-bright);
+            font-weight: 400;
+        }
+
+        /* ═══ WHAT IT IS ═══ */
+        .spec-block {
+            margin-bottom: 48px;
+        }
+
+        .spec-header {
+            font-size: 0.6rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 16px;
+        }
+
+        .spec-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .spec-list li {
+            font-size: 0.75rem;
+            font-weight: 300;
+            color: var(--text);
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .spec-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--text-faint);
+        }
+
+        /* ═══ CAPTURE ═══ */
+        .capture {
+            background: var(--bg-raised);
+            border: 1px solid var(--border);
+            padding: 32px 24px;
+            margin-bottom: 48px;
+        }
+
+        .capture-header {
+            font-size: 0.6rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 8px;
+        }
+
+        .capture-status {
+            font-size: 0.6rem;
+            font-weight: 400;
+            color: var(--amber);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .capture p {
+            font-size: 0.8rem;
+            font-weight: 300;
+            line-height: 1.7;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .capture-prompt {
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: var(--text-bright);
+            margin-bottom: 20px;
+        }
+
+        .capture-cta {
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            color: var(--text-bright);
+            text-decoration: none;
+            padding: 10px 24px;
+            border: 1px solid var(--border-active);
+            transition: all 0.3s ease;
+        }
+
+        .capture-cta:hover {
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        .capture-note {
+            font-size: 0.6rem;
+            font-weight: 300;
+            color: var(--text-faint);
+            margin-top: 16px;
+        }
+
+        /* ═══ ARCHITECTURE PREVIEW ═══ */
+        .arch {
+            margin-bottom: 48px;
+        }
+
+        .arch-header {
+            font-size: 0.6rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 16px;
+        }
+
+        .arch-diagram {
+            font-size: 0.65rem;
+            font-weight: 300;
+            line-height: 1.5;
+            color: var(--text-dim);
+            white-space: pre;
+            overflow-x: auto;
+            padding: 20px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+        }
+
+        .arch-diagram .g { color: var(--green); }
+        .arch-diagram .a { color: var(--amber); }
+        .arch-diagram .b { color: var(--text-bright); }
+
+        /* ═══ FOOTER ═══ */
+        .footer {
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-link {
+            font-size: 0.6rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            color: var(--text-faint);
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--text-dim);
+        }
+
+        .footer-right {
+            font-size: 0.6rem;
+            font-weight: 300;
+            color: var(--text-faint);
+            letter-spacing: 0.1em;
+        }
+
+        /* ═══ RESPONSIVE ═══ */
+        @media (max-width: 480px) {
+            .page { padding: 60px 20px 40px; }
+            .arch-diagram { font-size: 0.55rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<div class="page">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="name">b1e55ed <span class="hex">0x</span></div>
+        <div class="tagline">Sovereign AI trading intelligence</div>
+    </div>
+
+    <!-- STATUS -->
+    <div class="status-block">
+        <div class="status-header">System Status</div>
+        <div class="status-row">
+            <span class="status-label">Brain</span>
+            <span class="status-value green"><span class="dot green pulse"></span>Operational — Grade A-</span>
+        </div>
+        <div class="status-row">
+            <span class="status-label">Producers</span>
+            <span class="status-value green"><span class="dot green"></span>10/10 live</span>
+        </div>
+        <div class="status-row">
+            <span class="status-label">Tests</span>
+            <span class="status-value dim">1,800+ passing</span>
+        </div>
+        <div class="status-row">
+            <span class="status-label">Execution</span>
+            <span class="status-value amber"><span class="dot amber"></span>Paper trading</span>
+        </div>
+        <div class="status-row">
+            <span class="status-label">Repo</span>
+            <span class="status-value dim">Private — opening soon</span>
+        </div>
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div class="description">
+        <p>An <span class="highlight">open-source</span> AI trading intelligence that anyone can run. Clone it, bring your own API keys, pick a preset, start paper trading in minutes.</p>
+        <p>The system <span class="highlight">compounds its own learning</span> — every trade, every pattern, every mistake feeds back into a grimoire that gets sharper over time. Infinitely configurable for builders who want to tune every weight.</p>
+        <p>Not a bot that buys and sells. A <span class="highlight">signal → decision → learning pipeline</span> where the next cycle is always smarter than the last.</p>
+    </div>
+
+    <!-- WHAT IT IS -->
+    <div class="spec-block">
+        <div class="spec-header">What's inside</div>
+        <ul class="spec-list">
+            <li>7-domain synthesis engine (on-chain, TradFi, sentiment, social, technical, events, curator)</li>
+            <li>Regime detection with real features (stablecoin flows, ETF data, funding z-score)</li>
+            <li>Conviction scoring with automatic counter-thesis when confidence runs too high</li>
+            <li>Event-sourced database with hash chain (tamper-evident, replayable)</li>
+            <li>5-level kill switch hierarchy (pause → reduce → exit → lockdown → emergency)</li>
+            <li>Config presets: conservative, balanced, degen — or build your own</li>
+            <li>Backtest engine with walk-forward validation and FDR correction</li>
+            <li>Mandatory paper trading period before live execution</li>
+        </ul>
+    </div>
+
+    <!-- ARCHITECTURE -->
+    <div class="arch">
+        <div class="arch-header">Pipeline</div>
+        <div class="arch-diagram"><span class="b">Producers</span> → <span class="b">Event Store</span> → <span class="b">Normalizer</span> → <span class="b">Synthesis</span> (7 domains)
+    ↓
+<span class="b">Feature Extractor</span> → <span class="b">Regime Detector</span> → <span class="g">Conviction Engine</span>
+    ↓
+<span class="b">Kill Switch</span> → <span class="b">Decision Engine</span> → <span class="a">Alerts / Actions</span>
+    ↕                     ↕
+<span class="g">Grimoire Hooks</span> (read patterns pre-synthesis, write outcomes post-decision)</div>
+    </div>
+
+    <!-- CAPTURE -->
+    <div class="capture">
+        <div class="capture-header">Early Access</div>
+        <div class="capture-status">Repo opens soon</div>
+        <p>b1e55ed will be open source. Free to run. Bring your own keys. The system is in production internally — we're cleaning the repo for public release.</p>
+        <p class="capture-prompt">If you want early access, tell us: what's your edge?</p>
+        <a href="mailto:permupperclass@proton.me?subject=b1e55ed%20early%20access&body=What%20I%20build%3A%0A%0AMy%20edge%3A%0A" class="capture-cta">permupperclass@proton.me</a>
+        <div class="capture-note">We read every email. No auto-responder. No newsletter.</div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <a href="https://permanentupperclass.com" class="footer-link">Permanent Upper Class</a>
+        <div class="footer-right">Est 2026</div>
+    </div>
+
+</div>
+
+</body>
+</html>
