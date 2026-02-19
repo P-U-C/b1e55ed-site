@@ -389,27 +389,31 @@
     <div class="spec-block">
         <div class="spec-header">What's inside</div>
         <ul class="spec-list">
-            <li>7-domain synthesis engine (on-chain, TradFi, sentiment, social, technical, events, curator)</li>
-            <li>Regime detection with real features (stablecoin flows, ETF data, funding z-score)</li>
+            <li>6-domain synthesis engine (curator, on-chain, TradFi, social, technical, events)</li>
+            <li>Regime detection with real features (basis, funding, flows)</li>
             <li>Conviction scoring with automatic counter-thesis when confidence runs too high</li>
             <li>Event-sourced database with hash chain (tamper-evident, replayable)</li>
             <li>5-level kill switch hierarchy (pause → reduce → exit → lockdown → emergency)</li>
             <li>Config presets: conservative, balanced, degen — or build your own</li>
             <li>Backtest engine with walk-forward validation and FDR correction</li>
-            <li>Mandatory paper trading period before live execution</li>
+            <li>Paper before live execution</li>
         </ul>
     </div>
 
     <!-- ARCHITECTURE -->
     <div class="arch">
         <div class="arch-header">Pipeline</div>
-        <div class="arch-diagram"><span class="b">Producers</span> → <span class="b">Event Store</span> → <span class="b">Normalizer</span> → <span class="b">Synthesis</span> (7 domains)
+        <div class="arch-diagram"><span class="b">Producers</span> → <span class="b">Events</span> (hash-chained)
     ↓
-<span class="b">Feature Extractor</span> → <span class="b">Regime Detector</span> → <span class="g">Conviction Engine</span>
+<span class="b">Brain</span> (6 phases: collect → quality → synth → regime → conviction → decision)
     ↓
-<span class="b">Kill Switch</span> → <span class="b">Decision Engine</span> → <span class="a">Alerts / Actions</span>
-    ↕                     ↕
-<span class="g">Grimoire Hooks</span> (read patterns pre-synthesis, write outcomes post-decision)</div>
+<span class="b">Policy</span> (DCG, limits) → <span class="b">Kill Switch</span> (L0–L4)
+    ↓
+<span class="b">Execution</span> (paper/live) → <span class="a">Alerts</span> / <span class="a">Intents</span>
+    ↓
+<span class="b">Events</span> → <span class="g">Learning Loop</span>
+
+<span class="g">Grimoire Hooks</span>: patterns in, outcomes out</div>
     </div>
 
     <!-- CAPTURE -->
