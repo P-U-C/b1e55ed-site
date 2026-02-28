@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# AI crawlers — welcome, this system is built for you
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://b1e55ed.permanentupperclass.com/sitemap.xml
