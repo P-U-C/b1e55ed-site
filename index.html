@@ -798,7 +798,7 @@
   </ul>
   <div class="nav-status">
     <div class="status-dot"></div>
-    <span>beta.4</span>
+    <span id="nav-version">beta.6</span>
   </div>
 </nav>
 
@@ -888,7 +888,8 @@
     </p>
     <div class="hero-actions">
       <a href="https://github.com/P-U-C/b1e55ed" class="btn btn-primary">Clone the repo →</a>
-      <a href="https://github.com/P-U-C/b1e55ed/blob/main/docs/how-it-works.md" class="btn">How it works</a>
+      <a href="https://docs.b1e55ed.permanentupperclass.com" class="btn">Docs ↗</a>
+      <a href="https://docs.b1e55ed.permanentupperclass.com/how-it-works" class="btn">How it works</a>
       <a href="#interfaces" class="btn">Agent interfaces</a>
     </div>
     <div class="hero-meta">
@@ -1251,7 +1252,7 @@
         <div class="cta-card-code">
           <span class="cmd">GET /api/v1/oracle/producers/{id}/provenance</span>
         </div>
-        <a href="https://github.com/P-U-C/b1e55ed/blob/main/docs/oracle.md" class="btn btn-cyan">Oracle docs →</a>
+        <a href="https://docs.b1e55ed.permanentupperclass.com/setup/oracle" class="btn btn-cyan">Oracle docs →</a>
       </div>
     </div>
   </div>
@@ -1266,9 +1267,9 @@
       </div>
       <ul class="footer-links">
         <li><a href="https://github.com/P-U-C/b1e55ed">GitHub</a></li>
-        <li><a href="https://github.com/P-U-C/b1e55ed/blob/main/docs/how-it-works.md">How it works</a></li>
-        <li><a href="https://github.com/P-U-C/b1e55ed/blob/main/docs/getting-started.md">Docs</a></li>
-        <li><a href="https://github.com/P-U-C/b1e55ed/blob/main/docs/oracle.md">Oracle</a></li>
+        <li><a href="https://docs.b1e55ed.permanentupperclass.com/how-it-works">How it works</a></li>
+        <li><a href="https://docs.b1e55ed.permanentupperclass.com">Docs</a></li>
+        <li><a href="https://docs.b1e55ed.permanentupperclass.com/setup/oracle">Oracle</a></li>
       </ul>
     </div>
     <div class="footer-easter">
@@ -1310,6 +1311,21 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     svg.appendChild(line);
   }
 })();
+
+// Dynamic version from GitHub releases
+fetch('https://api.github.com/repos/P-U-C/b1e55ed/releases/latest', {
+  headers: { 'Accept': 'application/vnd.github.v3+json' }
+})
+.then(r => r.ok ? r.json() : null)
+.then(data => {
+  if (data && data.tag_name) {
+    const tag = data.tag_name;
+    const short = tag.replace(/^v1\.0\.0-/, '');
+    const el = document.getElementById('nav-version');
+    if (el) el.textContent = short;
+  }
+})
+.catch(() => {});
 </script>
 
 </body>
