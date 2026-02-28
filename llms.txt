@@ -1,0 +1,32 @@
+# b1e55ed
+
+> Open-source, event-sourced trading intelligence engine with a public provenance oracle. Built for AI agents.
+
+Operators run b1e55ed as a sovereign trading OS. AI agents query its oracle to verify signal producer track records before acting on signals.
+
+## Start here
+
+- [Documentation](https://docs.b1e55ed.permanentupperclass.com): Full docs site
+- [For Agents](https://docs.b1e55ed.permanentupperclass.com/agents): Discovery, MCP install, oracle, SSE
+- [llms.txt](https://docs.b1e55ed.permanentupperclass.com/llms.txt): Machine-readable docs index
+
+## Oracle — no auth required
+
+```
+GET https://oracle.b1e55ed.permanentupperclass.com/api/v1/oracle/producers/{producer_id}/provenance
+```
+
+Public. No API key. Returns hit rates, drawdowns, chain verification for any producer.
+
+## MCP server
+
+```
+POST https://oracle.b1e55ed.permanentupperclass.com/api/v1/mcp
+Authorization: Bearer <operator-token>
+```
+
+Tools: `b1e55ed_provenance_check`, `get_brain_status`, `get_recent_signals`, `get_open_positions`, `emit_producer_signal`, `get_signal_attribution`
+
+## Source
+
+- [GitHub](https://github.com/P-U-C/b1e55ed): Full source, install instructions
