@@ -657,6 +657,16 @@
     margin-top: 48px;
   }
 
+  .cta-grid-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media (max-width: 900px) {
+    .cta-grid-3 {
+      grid-template-columns: 1fr;
+    }
+  }
+
   .cta-card {
     background: var(--bg-panel);
     border: 1px solid var(--border-dim);
@@ -687,6 +697,12 @@
 
   .cta-card-a .cta-card-tag { color: var(--text-bright); }
   .cta-card-b .cta-card-tag { color: var(--cyan); }
+  .cta-card-c {
+    border-color: var(--amber, #ffa500);
+  }
+  .cta-card-c .cta-card-tag {
+    color: var(--amber, #ffa500);
+  }
 
   .cta-card-title { font-size: 18px; font-weight: 300; color: var(--text-primary); margin-bottom: 12px; }
 
@@ -1286,24 +1302,41 @@
 <section id="start" style="border-top: 1px solid var(--border-dim);">
   <div class="wrap">
     <div class="section-label reveal">Start here</div>
-    <div class="section-title reveal">Two paths into the system</div>
+    <div class="section-title reveal">Three paths into the system</div>
 
-    <div class="cta-grid stagger">
+    <div class="cta-grid cta-grid-3 stagger">
+
+      <!-- Operator: Standalone -->
       <div class="cta-card cta-card-a reveal">
-        <div class="cta-card-tag">For operators</div>
-        <div class="cta-card-title">Run your own instance</div>
+        <div class="cta-card-tag">For operators · standalone</div>
+        <div class="cta-card-title">Self-contained</div>
         <p class="cta-card-body">
-          One command to install. The wizard handles identity, config, and first run. Pick a preset — conservative, balanced, or degen. Full sovereignty. Full CLI.
+          CLI + dashboard on your own machine. No external dependencies. Identity, config, and first run in one command.
         </p>
         <div class="cta-card-code">
           <span class="cmd">curl -sSf https://raw.githubusercontent.com/P-U-C/b1e55ed/main/install.sh | bash</span><br>
-          <span class="cmd">b1e55ed wizard</span>
+          <span class="cmd">b1e55ed setup standalone</span>
         </div>
-        <a href="https://github.com/P-U-C/b1e55ed" class="btn btn-primary">GitHub →</a>
+        <a href="https://docs.b1e55ed.permanentupperclass.com/quickstart" class="btn btn-primary">Quickstart →</a>
       </div>
 
+      <!-- Operator: Connected -->
+      <div class="cta-card cta-card-c reveal">
+        <div class="cta-card-tag">For operators · connected</div>
+        <div class="cta-card-title">Orchestrated</div>
+        <p class="cta-card-body">
+          CLI + OpenClaw + Telegram. b1e55ed runs as an intelligent agent you control via chat — signals, alerts, and positions on your phone.
+        </p>
+        <div class="cta-card-code">
+          <span class="cmd">curl -sSf https://raw.githubusercontent.com/P-U-C/b1e55ed/main/install.sh | bash</span><br>
+          <span class="cmd">b1e55ed setup connected</span>
+        </div>
+        <a href="https://docs.b1e55ed.permanentupperclass.com/setup/telegram" class="btn btn-primary">Setup guide →</a>
+      </div>
+
+      <!-- AI Agents + Builders -->
       <div class="cta-card cta-card-b reveal">
-        <div class="cta-card-tag">For agents + builders</div>
+        <div class="cta-card-tag">For AI agents + builders</div>
         <div class="cta-card-title">Query the oracle</div>
         <p class="cta-card-body">
           Building a bot? One API call to check signal provenance before any trade. No auth required. The middleware your AI agent should be inserting.
@@ -1313,6 +1346,7 @@
         </div>
         <a href="https://docs.b1e55ed.permanentupperclass.com/setup/oracle" class="btn btn-cyan">Oracle docs →</a>
       </div>
+
     </div>
   </div>
 </section>
