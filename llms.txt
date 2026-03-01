@@ -2,7 +2,7 @@
 
 > Open-source, event-sourced trading intelligence engine with a public provenance oracle. Built for AI agents.
 
-Operators run b1e55ed as a sovereign trading OS. AI agents query its oracle to verify signal producer track records before acting on signals.
+Operators run b1e55ed as a sovereign trading intelligence engine — a closed-loop flywheel where attribution ties every trade outcome back to the signals that contributed. Karma updates automatically. AI agents query its oracle to verify signal producer track records before acting.
 
 ## Start here
 
