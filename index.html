@@ -231,8 +231,28 @@
     color: var(--text-dim);
     max-width: 640px;
     line-height: 1.8;
-    margin-bottom: 48px;
+    margin-bottom: 24px;
     animation: fadeSlideUp 0.8s ease-out 0.5s both;
+  }
+
+  .hero-capabilities {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+    animation: fadeSlideUp 0.8s ease-out 0.58s both;
+  }
+
+  .hero-cap {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-bright);
+    border: 1px solid var(--border-active);
+    background: rgba(0,255,65,0.04);
+    padding: 4px 10px;
+    white-space: nowrap;
   }
 
   .hero-actions {
@@ -627,6 +647,18 @@
   .ifc-title { font-size: 15px; font-weight: 400; color: var(--text-primary); margin-bottom: 4px; }
   .ifc-endpoint { font-size: 11px; color: var(--text-dim); margin-bottom: 12px; letter-spacing: 0.02em; }
   .ifc-desc { font-size: 12px; font-weight: 400; color: var(--text-dim); line-height: 1.7; }
+  .ifc-desc code { color: var(--text-primary); font-size: 11px; }
+  .ifc-code {
+    margin-top: 12px;
+    padding: 10px 12px;
+    border: 1px solid var(--border-dim);
+    background: var(--bg);
+    color: var(--text-dim);
+    font-size: 10px;
+    line-height: 1.55;
+    white-space: pre;
+    overflow-x: auto;
+  }
   .ifc-auth { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 12px; }
   .ifc-auth.none { color: var(--text-bright); }
   .ifc-auth.required { color: var(--text-muted); }
@@ -961,6 +993,9 @@
     <p class="hero-sub">
       A closed-loop trading intelligence engine that compounds with every trade. Attribution ties outcomes back to signal producers — karma updates automatically when positions close. The system learns what actually works, and its provenance data powers a public oracle consumed by AI agents at scale.
     </p>
+    <div class="hero-capabilities">
+      <span class="hero-cap">MCP-native</span>
+    </div>
     <div class="hero-actions">
       <a href="https://github.com/P-U-C/b1e55ed" class="btn btn-primary">Clone the repo →</a>
       <a href="https://docs.b1e55ed.permanentupperclass.com" class="btn">Docs ↗</a>
@@ -1161,13 +1196,14 @@
       </div>
 
       <div class="interface-card ifc-mcp reveal">
-        <div class="ifc-tag">MCP Server</div>
-        <div class="ifc-title">Agent tool calls</div>
-        <div class="ifc-endpoint">POST /api/v1/mcp</div>
+        <div class="ifc-tag">MCP Protocol</div>
+        <div class="ifc-title">Live producer signals</div>
+        <div class="ifc-endpoint">b1e55ed mcp --port 7337</div>
         <p class="ifc-desc">
-          JSON-RPC 2.0. Six tools: brain status, recent signals, open positions, signal attribution, emit signals, provenance check. Standard MCP discovery.
+          Connect Claude Desktop or any MCP-compatible agent directly to live producer signals. No REST polling. No API key setup. <code>pip install 'b1e55ed[mcp]'</code> → configure → subscribe.
         </p>
-        <div class="ifc-auth required">Auth: bearer token</div>
+        <pre class="ifc-code">{ "mcpServers": { "b1e55ed": { "command": "b1e55ed", "args": ["mcp", "--port", "7337"] } } }</pre>
+        <div class="ifc-auth none">Auth: none</div>
       </div>
 
       <div class="interface-card ifc-sse reveal">
@@ -1251,6 +1287,22 @@
         <div class="arch-card-title">Prove the brain adds edge</div>
         <p class="arch-card-desc">
           4 baseline producers — momentum, flat, equal-weight, discretionary — running through the same attribution pipeline as every real producer. If the brain can't beat naive strategies with verified attribution, it doesn't deserve capital.
+        </p>
+      </div>
+
+      <div class="arch-card reveal">
+        <div class="arch-card-label">MCP</div>
+        <div class="arch-card-title">MCP Server</div>
+        <p class="arch-card-desc">
+          Producers become externally-queryable signal sources over MCP on port <span class="code">7337</span>, so Claude Desktop and other agents can read live intelligence directly.
+        </p>
+      </div>
+
+      <div class="arch-card reveal">
+        <div class="arch-card-label">MCP</div>
+        <div class="arch-card-title">MCPProducerRegistry</div>
+        <p class="arch-card-desc">
+          Thread-safe ring buffer that retains the last 100 signals per producer for low-latency MCP reads, deterministic history, and concurrent agent access.
         </p>
       </div>
 
