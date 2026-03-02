@@ -18,14 +18,12 @@ GET https://oracle.b1e55ed.permanentupperclass.com/api/v1/oracle/producers/{prod
 
 Public. No API key. Returns hit rates, drawdowns, chain verification for any producer.
 
-## MCP server
+## MCP
 
-```
-POST https://oracle.b1e55ed.permanentupperclass.com/api/v1/mcp
-Authorization: Bearer <operator-token>
-```
-
-Tools: `b1e55ed_provenance_check`, `get_brain_status`, `get_recent_signals`, `get_open_positions`, `emit_producer_signal`, `get_signal_attribution`
+- Producers expose live signals via MCP protocol (port 7337)
+- Tools: `list_producers`, `get_latest_signal`, `get_signal_history`
+- HTTP mirror: `GET /api/v1/mcp/producers`, `GET /api/v1/mcp/status`
+- Config: `pip install 'b1e55ed[mcp]'` to enable
 
 ## Source
 
