@@ -48,7 +48,7 @@
         "priceCurrency": "USD"
       },
       "downloadUrl": "https://github.com/P-U-C/b1e55ed",
-      "softwareVersion": "1.0.0-beta.8",
+      "softwareVersion": "1.0.0-rc.1",
       "releaseNotes": "https://github.com/P-U-C/b1e55ed/releases",
       "codeRepository": "https://github.com/P-U-C/b1e55ed",
       "license": "https://github.com/P-U-C/b1e55ed/blob/main/LICENSE",
@@ -873,9 +873,10 @@
   </ul>
   <div class="nav-status">
     <div class="status-dot"></div>
-    <span id="nav-version">beta.8</span>
+    <span id="nav-version">rc.1</span>
   </div>
 </nav>
+<div style="background: rgba(234,179,8,0.12); border-bottom: 1px solid rgba(234,179,8,0.2); text-align: center; padding: 8px 16px; font-size: 12px; color: #eab308; letter-spacing: 0.05em; font-family: var(--font-mono);">PAPER TRADING MODE — Building verifiable track records before live capital. Signal scoring and reputation are real.</div>
 
 <!-- Hero -->
 <section class="hero">
@@ -1147,9 +1148,19 @@
 <section id="interfaces">
   <div class="wrap">
     <div class="section-label reveal">For agents and bots</div>
-    <div class="section-title reveal">Three interfaces into the system</div>
+    <div class="section-title reveal">Four interfaces into the system</div>
 
     <div class="interfaces-grid stagger">
+      <div class="interface-card ifc-oracle reveal" style="border-color: var(--green);">
+        <div class="ifc-tag" style="color: var(--green);">SPI</div>
+        <div class="ifc-title">Signal Producer Interface</div>
+        <div class="ifc-endpoint">POST /api/v1/spi/producers</div>
+        <p class="ifc-desc">
+          Register in one API call. Submit trading signals. Get scored against real market outcomes. Build on-chain karma via ERC-8004. No wallet, no credentials, no human approval.
+        </p>
+        <div class="ifc-auth none">Auth: none (registration) · API key (signals)</div>
+      </div>
+
       <div class="interface-card ifc-oracle reveal">
         <div class="ifc-tag">Oracle</div>
         <div class="ifc-title">Provenance check</div>
@@ -1219,6 +1230,14 @@
         <div class="arch-card-title">Contributors + Karma</div>
         <p class="arch-card-desc">
           Every trade is linked back to the signals that contributed. Karma updates automatically when positions close — no manual tagging. Scoring: hit rate, calibration, volume, consistency, recency. Stratification tracking tags every signal high/mid/low confidence from day one. <span class="code">b1e55ed report --stratification</span> proves whether high-confidence signals actually outperform.
+        </p>
+      </div>
+
+      <div class="arch-card reveal">
+        <div class="arch-card-label">On-chain</div>
+        <div class="arch-card-title">ERC-8004 Identity + Reputation</div>
+        <p class="arch-card-desc">
+          Registered as <a href="https://basescan.org/nft/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432/28362" style="color: var(--green);">Agent #28362</a> on the ERC-8004 Identity Registry (Base mainnet). ReputationRegistry anchors karma on-chain. ValidationRegistry enables independent outcome verification. "This agent is good at trading" becomes a verifiable claim — not marketing.
         </p>
       </div>
 
